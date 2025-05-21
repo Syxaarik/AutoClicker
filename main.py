@@ -1,9 +1,15 @@
 from tkinter import *
 from tkinter import ttk
+import ctypes
+import sys
 import keyboard
 import pyautogui
 import threading
 import time
+
+if not ctypes.windll.shell32.IsUserAnAdmin():
+    ctypes.windll.shell32.ShellExecuteW(None, "runas", sys.executable, " ".join(sys.argv), None, 1)
+    sys.exit()
 
 pyautogui.FAILSAFE = True
 
